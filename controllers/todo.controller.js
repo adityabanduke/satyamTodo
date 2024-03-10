@@ -3,12 +3,13 @@ const Todo = require("../models/todo.js");
 const addTodo = async (req, res) => {
   try {
     // console.log(req)
-    const { name, completed, uid } = req.body;
-    console.log(name, completed, uid);
+    const { title, completed, uid , desc } = req.body;
+    console.log(title, completed, uid);
     const todo = new Todo({
-      name,
+      title,
       completed,
       uid,
+      desc
     });
     await todo.save();
     res.status(201).json("todo added");
@@ -38,10 +39,10 @@ const getTodo = async (req, res) => {
 const updateTodo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, completed, uid } = req.body;
+    const { title, completed, uid , desc } = req.body;
     const todo = await Todo.findByIdAndUpdate(
       id,
-      { name, completed, uid },
+      { title, completed, uid,desc },
       { new: true }
     );
     res.status(200).json("todo updated");
