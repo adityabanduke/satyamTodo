@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const todoSchema = new Schema({
-    name: {
+    title: {
         type: String,
         required: true
     },
@@ -13,7 +13,11 @@ const todoSchema = new Schema({
     uid :{
         type: String,
         required: true
-    }
+    },
+    desc: {
+        type: String,
+        required: true
+    },
 });
 
 module.exports = mongoose.model('Todo', todoSchema);

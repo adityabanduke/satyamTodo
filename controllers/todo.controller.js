@@ -1,3 +1,4 @@
+const { mongoose } = require("mongoose");
 const Todo = require("../models/todo.js");
 const addTodo = async (req, res) => {
   try {
@@ -10,7 +11,7 @@ const addTodo = async (req, res) => {
       uid,
     });
     await todo.save();
-    res.status(201).json(todo);
+    res.status(201).json("todo added");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -27,7 +28,7 @@ const getTodo = async (req, res) => {
   try {
     const { id } = req.params;
     console.log(typeof id);
-    const todos = await Todo.find({ uid: id }); 
+    const todos = await Todo.find({ uid:id });
     res.status(200).json(todos);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -43,7 +44,7 @@ const updateTodo = async (req, res) => {
       { name, completed, uid },
       { new: true }
     );
-    res.status(200).json(todo);
+    res.status(200).json("todo updated");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
